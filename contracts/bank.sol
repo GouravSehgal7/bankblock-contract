@@ -46,7 +46,7 @@ contract BankContract{
         UpdateType lastAction;
         uint LastExpenditure;
     }
-    mapping (address => UserDetails) users;
+    mapping (address => UserDetails) public users;
     mapping (address => Balance) balance;
     event BankOpened(address to, string message);
     constructor(string memory _bankname,string memory _email){
@@ -54,7 +54,7 @@ contract BankContract{
         BankName = _bankname;
         email  = _email;
         Timeofinitialization = block.timestamp;
-        emit BankOpened(owner,"Bank Opened");
+        emit BankOpened(msg.sender,"Bank Opened");
     }
     // count the number of users
     function NumberOfAccounts() public view returns(uint){
